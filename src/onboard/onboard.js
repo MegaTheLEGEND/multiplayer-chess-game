@@ -68,6 +68,7 @@ class CreateNewGame extends React.Component {
                 
                            
                     <h1 style={{textAlign: "center", marginTop:"20px"}}>Your Room:<span id="roomnumber"></span></h1>  
+                    <h5 style={{textAlign: "center", marginTop: "7px"}}>(defaults to 50)</h5>
                     
                     <input type="range" min="1" max="100" class="slider" id="myRange" onChange={(_, value) =>  document.getElementById("roomnumber").innerHTML = " " + document.getElementById("myRange").value}
                             style={{marginLeft: String((window.innerWidth / 2) - 390/2) + "px", width: "390px", marginTop: "42px"}}/>

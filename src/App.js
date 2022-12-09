@@ -61,7 +61,7 @@ function App() {
                         style = {{marginLeft: String((window.innerWidth / 2) - 60) + "px", width: "128px", marginTop: "62px"}} 
                         onClick = {() => { window.location.replace("/join")
                         }}>Join Room</button>
-                        
+              
           </route>
           <Route path = "/create" exact>
             <Onboard setUserName = {setUserName}/>
@@ -77,14 +77,15 @@ function App() {
           </Route>
           <Route path = "/join" exact>
             <React.Fragment>
+              <h1 style={{textAlign: "center", marginTop: "7px"}}>Room Number:</h1>
               <input type="range" min="1" max="100" class="slider" id="myRange" onChange={(_, value) => document.getElementById("joinbtn").innerHTML = "Join Room: " + document.getElementById("myRange").value}
-                            style={{marginLeft: String((window.innerWidth / 2) - 390/2) + "px", width: "390px", marginTop: "62px"}}/>
+                            style={{marginLeft: String((window.innerWidth / 2) - 390/2) + "px", width: "390px", marginTop: "12px"}}/>
+                  <h5 style={{textAlign: "center", marginTop: "7px"}}>(defaults to 50)</h5>
               
                <button className="btn btn-primary" id="joinbtn"
                         style = {{marginLeft: String((window.innerWidth / 2) - 60) + "px", width: "128px", marginTop: "62px"}} 
                         onClick = {() => { window.location.replace("/game/" + document.getElementById("myRange").value)
                         }}>Join Room</button>
-              
               
               </React.Fragment> 
             <joinroom/>

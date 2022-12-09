@@ -24,6 +24,7 @@ class ChessGame extends React.Component {
     }
 
 
+
     componentDidMount() {
         console.log(this.props.myUserName)
         console.log(this.props.opponentUserName)
@@ -267,11 +268,15 @@ const ChessGameWrapper = (props) => {
             console.log(statusUpdate)
             if (statusUpdate === 'There are already 2 people playing in this room.') {
                 doesntExist(true)
+                window.location.replace('/')
                 alert(statusUpdate)
             }else if(statusUpdate === 'This game session does not exist.'){
-                //create game if not there, idk how to make a game :(
-                alert(statusUpdate + " please create a game to continue. (I would do it for you but i dont know enough about this programing language to do so.)")
-                 window.location.replace("/")
+                alert(statusUpdate + "\n This room will be created for you")
+                
+                var gamename = window.location.pathname
+                var gamename2 = gamename.replace("/game/", "")
+        socket.emit('createNewGame', gamename2)
+                
                 
             }
         })
@@ -353,9 +358,9 @@ const ChessGameWrapper = (props) => {
               value = {domainName + "/game/" + gameid}
               type = "text">
               </textarea>
-            <br></br>
-
-            <h1 style={{ textAlign: "center", marginTop: "100px" }}>
+            
+ <h5 style={{textAlign: "center", marginTop: "5px"}}>Or have them join room: <strong>{gameid}</strong></h5>
+            <br></br><h1 style={{ textAlign: "center", marginTop: "5px" }}>
               {" "}
               Waiting for other opponent to join the game...{" "}
             </h1>
