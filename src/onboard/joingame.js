@@ -34,8 +34,8 @@ const JoinGame = (props) => {
     const { gameid } = useParams()
     JoinGameRoom(gameid, props.userName, props.isCreator)
     return <div>
-        <h1 style = {{textAlign: "center"}}>Welcome to Chess with Friend!</h1>
-        <h3 style = {{textAlign: "center"}}>this text is unnesesary</h3>
+        <h1 style = {{textAlign: "center"}}>Welcome to Chess!</h1>
+         <h5 style={{textAlign: "center", marginTop: "10px"}}>Orignal React chess made by <a href="https://github.com/JackHeTech">Jack He</a></h5>
     </div>
 }
 

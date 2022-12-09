@@ -305,5 +305,4 @@ class Game {
         return startingChessBoard
     }
 }
-
 export default Game

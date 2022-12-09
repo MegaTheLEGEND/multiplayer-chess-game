@@ -24,6 +24,7 @@ class ChessGame extends React.Component {
     }
 
 
+
     componentDidMount() {
         console.log(this.props.myUserName)
         console.log(this.props.opponentUserName)
@@ -109,8 +110,10 @@ class ChessGame extends React.Component {
 
         if (blackCheckmated) {
             alert("WHITE WON BY CHECKMATE!")
+            window.location.replace("/")
         } else if (whiteCheckmated) {
             alert("BLACK WON BY CHECKMATE!")
+            window.location.replace("/")
         }
     }
 
@@ -263,9 +266,18 @@ const ChessGameWrapper = (props) => {
     
         socket.on("status", statusUpdate => {
             console.log(statusUpdate)
-            alert(statusUpdate)
-            if (statusUpdate === 'This game session does not exist.' || statusUpdate === 'There are already 2 people playing in this room.') {
+            if (statusUpdate === 'There are already 2 people playing in this room.') {
                 doesntExist(true)
+                window.location.replace('/')
+                alert(statusUpdate)
+            }else if(statusUpdate === 'This game session does not exist.'){
+                alert(statusUpdate + "\n This room will be created for you")
+                
+                var gamename = window.location.pathname
+                var gamename2 = gamename.replace("/game/", "")
+        socket.emit('createNewGame', gamename2)
+                
+                
             }
         })
         
@@ -346,9 +358,9 @@ const ChessGameWrapper = (props) => {
               value = {domainName + "/game/" + gameid}
               type = "text">
               </textarea>
-            <br></br>
-
-            <h1 style={{ textAlign: "center", marginTop: "100px" }}>
+            
+ <h5 style={{textAlign: "center", marginTop: "5px"}}>Or have them join room: <strong>{gameid}</strong></h5>
+            <br></br><h1 style={{ textAlign: "center", marginTop: "5px" }}>
               {" "}
               Waiting for other opponent to join the game...{" "}
             </h1>
